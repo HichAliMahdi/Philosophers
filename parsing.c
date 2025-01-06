@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:30:39 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/06 13:03:27 by hali-mah         ###   ########.fr       */
+/*   Created: 2025/01/06 12:58:45 by hali-mah          #+#    #+#             */
+/*   Updated: 2025/01/06 13:04:05 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosopher.h"
 
-void	ft_error(const char *error)
+void	parse_input(t_table *table, char **argv)
 {
-	printf("%s\n", error);
-	exit(EXIT_FAILURE);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sign;
-	int	res;
-
-	i = 0;
-	sign = 1;
-	res = 0;
-	
+	table->philo_nbr = ft_atoi(argv[1]);
 }
