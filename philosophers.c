@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:27:03 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/06 12:42:01 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:07:46 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ int	main(int argc, char **argv)
 		clean(&table);
 	}
 	else
-	{
 		ft_error("Input incorrect");
-	}
 }

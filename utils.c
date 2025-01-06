@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:30:39 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/06 13:03:27 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/06 18:07:57 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,4 @@ void	ft_error(const char *error)
 {
 	printf("%s\n", error);
 	exit(EXIT_FAILURE);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	i;
-	int	sign;
-	int	res;
-
-	i = 0;
-	sign = 1;
-	res = 0;
-	
 }
