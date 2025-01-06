@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/06 12:25:35 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:36:04 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,10 @@ typedef struct s_table
 	t_fork	*forks;
 	t_philo	*philos;
 }	t_table;
+
+// Functions
+
+/* utils.c */
+void	ft_error(const char *error);
 
 #endif
