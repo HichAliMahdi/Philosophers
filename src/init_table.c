@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:26:40 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 21:47:25 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 23:22:30 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,38 @@ int	init_table_resources(t_table *table)
 {
 	int	i;
 
-	i = 0;
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->num_philosophers);
-	if (!table->forks || !table->philosophers)
+	if (!table->forks)
 		return (1);
+	table->philosophers = malloc(sizeof(t_philosopher)
+			* table->num_philosophers);
+	if (!table->philosophers)
+	{
+		free(table->forks);
+		return (1);
+	}
+	i = 0;
 	while (i < table->num_philosophers)
 	{
-		pthread_mutex_init(&table->forks[i], NULL);
+		if (pthread_mutex_init(&table->forks[i], NULL) != 0)
+		{
+			while (--i >= 0)
+				pthread_mutex_destroy(&table->forks[i]);
+			free(table->forks);
+			free(table->philosophers);
+			return (1);
+		}
 		i++;
 	}
-	pthread_mutex_init(&table->print_lock, NULL);
+	if (pthread_mutex_init(&table->print_lock, NULL) != 0)
+	{
+		i = table->num_philosophers;
+		while (--i >= 0)
+			pthread_mutex_destroy(&table->forks[i]);
+		free(table->forks);
+		free(table->philosophers);
+		return (1);
+	}
 	return (0);
 }
 

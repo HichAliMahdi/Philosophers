@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 22:49:01 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 23:24:39 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ int		init_table_resources(t_table *table);
 int		init_table(t_table *table, int argc, char **argv);
 
 /*init_philosophers.c*/
-void	setup_philosoper(t_philosopher *philosopher, t_table *table, int i);
+void	setup_philosopher(t_philosopher *philosopher, t_table *table, int i);
 int		init_philosophers(t_table *table);
+void	*monitor_philosophers(void *arg);
 
 /*cleanup.c*/
 void	destroy_mutexes(t_table *table);
@@ -67,6 +68,7 @@ void	cleanup(t_table *table);
 
 /*routine.c*/
 void	*philosopher_routine(void *arg);
+void	start_simulation(t_table *table);
 
 /*action.c*/
 void	print_action(t_philosopher *philosopher, const char *action);

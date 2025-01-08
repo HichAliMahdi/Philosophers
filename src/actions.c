@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:20:56 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 22:49:28 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 23:06:10 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void	print_action(t_philosopher *philosopher, const char *action)
 {
-	t_table	table;
+	t_table	*table;
 
 	table = philosopher->table;
 	pthread_mutex_lock(&table->print_lock);
 	if (table->simulation_running)
+	{
 		printf("%ld %d %s\n", current_time() - table->start_time,
 			philosopher->id, action);
+	}
 	pthread_mutex_unlock(&table->print_lock);
 }
 
