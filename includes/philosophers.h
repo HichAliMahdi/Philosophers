@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 21:38:36 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:55:22 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,14 @@ typedef struct s_table
 
 // Functions
 /* Utilities */
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 /*init_table.c*/
-int	parse_args(t_table *table, int argc, char **argv);
+int		parse_args(t_table *table, int argc, char **argv);
+int		init_table_resources(t_table *table);
+int		init_table(t_table *table, int argc, char **argv);
+
+/*init_philosophers.c*/
+void	setup_philosoper(t_philosopher *philosopher, t_table *table, int i);
+int		init_philosophers(t_table *table);
 #endif
