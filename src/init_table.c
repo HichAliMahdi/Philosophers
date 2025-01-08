@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:26:40 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 21:31:34 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:47:25 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,31 @@ int	parse_args(t_table *table, int argc, char **argv)
 		table->max_meals = -1;
 	table->simulation_running = 1;
 	table->start_time = current_time();
+	return (0);
+}
+
+int	init_table_resources(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->num_philosophers);
+	if (!table->forks || !table->philosophers)
+		return (1);
+	while (i < table->num_philosophers)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		i++;
+	}
+	pthread_mutex_init(&table->print_lock, NULL);
+	return (0);
+}
+
+int	init_table(t_table *table, int argc, char **argv)
+{
+	if (parse_args(table, argc, argv))
+		return (1);
+	if (init_table_resources(table))
+		return (1);
 	return (0);
 }
