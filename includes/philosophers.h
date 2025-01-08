@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 22:26:35 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 22:49:01 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,7 @@ void	*philosopher_routine(void *arg);
 
 /*action.c*/
 void	print_action(t_philosopher *philosopher, const char *action);
+void	take_forks(t_philosopher *philosopher);
+void	eat(t_philosopher *philosopher);
+void	put_forks(t_philosopher	*philosopher);
 #endif
