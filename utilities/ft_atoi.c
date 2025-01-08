@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 21:17:35 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 21:25:06 by hali-mah         ###   ########.fr       */
+/*   Created: 2025/01/08 21:32:09 by hali-mah          #+#    #+#             */
+/*   Updated: 2025/01/08 21:37:04 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	main(int argc, char **argv)
+int	ft_atoi(const char *str)
 {
-	t_table	table;
+	int	i;
+	int	res;
+	int	sign;
 
-	if (argc < 5 || argc > 6)
+	i = 0;
+	res = 0;
+	sign = 1;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		printf("Function: ./philosophers num_philosophers time_to_die time_to_eat time_to_sleep [max_meals]\n");
-		return (1);
+		if (str[i] == '-')
+			sign = sign * -1;
+		i++;
 	}
-	if (init_table(&table, argc, argv))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		printf("Error initializing table\n");
-		return (1);
+		res = res * 10 + (str[i] - '0');
+		i++;
 	}
-	start_simulation(&table);
-	cleanup(&table);
-	return (0);
+	return (res * sign);
 }

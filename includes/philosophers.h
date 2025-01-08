@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 21:09:52 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:38:36 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ typedef struct s_table
 	long			start_time;
 }	t_table;
 
+// Functions
+/* Utilities */
+int	ft_atoi(const char *str);
+
+/*init_table.c*/
+int	parse_args(t_table *table, int argc, char **argv);
 #endif
