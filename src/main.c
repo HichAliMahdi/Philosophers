@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:27:03 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/06 18:07:46 by hali-mah         ###   ########.fr       */
+/*   Created: 2025/01/08 21:17:35 by hali-mah          #+#    #+#             */
+/*   Updated: 2025/01/08 21:22:29 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include ../includes/philosophers.h
 
 int	main(int argc, char **argv)
 {
 	t_table	table;
 
-	if (argc == 5 || argc == 6)
+	if (argc < 5 || argc > 6)
 	{
-		parse_input(&table, argv);
-		data_init(&table);
-		simulation_start(&table);
-		clean(&table);
+		printf("Function: ./philosophers num_philosophers time_to_die time_to_eat time_to_sleep [max_meals]\n");
+		return (1);
 	}
-	else
-		ft_error("Input incorrect");
+	if (init_table(&table, argc, argv))
+	{
+		printf("Error initializing table\n");
+		return (1);
+	}
+	start_simulation(&table);
+	cleanup(&table);
+	return (0);
 }
