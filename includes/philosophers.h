@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 18:57:10 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:24:57 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,24 @@
 # include <sys/time.h>
 # include <string.h>
 # include <limits.h>
+# include <errno.h>
+
+typedef enum e_philo_state
+{
+	THINKING,
+	HUNGRY,
+	EATING,
+	SLEEPING
+}	t_philo_state;
+
+typedef struct s_stats
+{
+	long			total_meals;
+	long			longest_meal_wait;
+	long			total_think_time;
+	long			total_sleep_time;
+	pthread_mutex_t	stats_mutex;
+}	t_stats;
 
 typedef struct s_philosopher
 {
@@ -29,6 +47,8 @@ typedef struct s_philosopher
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	state_mutex;
+	t_philo_state	state;
 	struct s_table	*table;
 }	t_philosopher;
 
@@ -45,6 +65,7 @@ typedef struct s_table
 	pthread_mutex_t	state_lock;
 	t_philosopher	*philosophers;
 	long			start_time;
+	t_stats			stats;
 }	t_table;
 
 // Function prototypes
@@ -56,6 +77,7 @@ int		init_table_resources(t_table *table);
 int		init_table(t_table *table, int argc, char **argv);
 void	setup_philosopher(t_philosopher *philosopher, t_table *table, int i);
 int		init_philosophers(t_table *table);
+int		check_all_philosophers_satisfied(t_table *table);
 void	*monitor_philosophers(void *arg);
 void	destroy_mutexes(t_table *table);
 void	cleanup(t_table *table);
@@ -65,5 +87,11 @@ void	print_action(t_philosopher *philosopher, const char *action);
 void	take_forks(t_philosopher *philosopher);
 void	eat(t_philosopher *philosopher);
 void	put_forks(t_philosopher *philosopher);
+long	ft_strtol(const char *str, int *error);
+int		validate_numeric_input(const char *str);
+void	init_stats(t_stats *stats);
+void	update_stats(t_philosopher *philo,
+			t_philo_state new_state, long duration);
+void	print_final_stats(t_table *table);
 
 #endif

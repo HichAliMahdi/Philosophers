@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:11:10 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 19:38:35 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/10 21:42:27 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	*philosopher_routine(void *arg)
 
 	philosopher = (t_philosopher *)arg;
 	table = philosopher->table;
+	if (table->num_philosophers == 1)
+	{
+		print_action(philosopher, "is thinking");
+		take_forks(philosopher);
+		return (NULL);
+	}
 	while (table->simulation_running)
 	{
 		print_action(philosopher, "is thinking");
