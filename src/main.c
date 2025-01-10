@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:17:35 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 22:58:51 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:23:29 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	main(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 	{
-		printf("Function: ./philosophers num_philosophers time_to_die "
-			"time_to_eat  time_to_sleep [max_meals]\n");
+		printf("Usage: ./philosophers num_philosophers time_to_die "
+			"time_to_eat time_to_sleep [max_meals]\n");
 		return (1);
 	}
 	if (init_table(&table, argc, argv))
 	{
-		printf("Error initializing table\n");
+		printf("Error: Invalid arguments or initialization failed\n");
 		return (1);
 	}
 	start_simulation(&table);

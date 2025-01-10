@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:48:44 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 23:24:29 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:28:13 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	setup_philosopher(t_philosopher *philosopher, t_table *table, int i)
 {
+	printf("Debug: Setting up philosopher %d\n", i + 1);
 	philosopher->id = i + 1;
 	philosopher->meals_eaten = 0;
 	philosopher->last_meal_time = table->start_time;
 	philosopher->left_fork = &table->forks[i];
 	philosopher->right_fork = &table->forks[(i + 1) % table->num_philosophers];
 	philosopher->table = table;
+	printf("Debug: Philosopher %d setup complete\n", i + 1);
 }
 
 int	init_philosophers(t_table *table)
@@ -34,41 +36,44 @@ int	init_philosophers(t_table *table)
 	}
 	return (0);
 }
+
+static void	check_philosopher_status(t_table *table, int i)
+{
+	long	current;
+
+	current = current_time();
+	if (current - table->philosophers[i].last_meal_time > table->time_to_die)
+	{
+		pthread_mutex_lock(&table->print_lock);
+		printf("%ld %d died\n", current - table->start_time,
+			table->philosophers[i].id);
+		table->simulation_running = 0;
+		pthread_mutex_unlock(&table->print_lock);
+	}
+}
+
+static void	monitor_each_philosopher(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->num_philosophers)
+	{
+		check_philosopher_status(table, i);
+		if (!table->simulation_running)
+			return ;
+		i++;
+	}
+}
+
 void	*monitor_philosophers(void *arg)
 {
 	t_table	*table;
-	int		i;
-	long	current;
 
 	table = (t_table *)arg;
 	while (table->simulation_running)
 	{
-		i = 0;
-		while (i < table->num_philosophers)
-		{
-			current = current_time();
-			if (current - table->philosophers[i].last_meal_time > table->time_to_die)
-			{
-				pthread_mutex_lock(&table->print_lock);
-				printf("%ld %d died\n", current - table->start_time,
-					table->philosophers[i].id);
-				table->simulation_running = 0;
-				pthread_mutex_unlock(&table->print_lock);
-				return (NULL);
-			}
-			if (table->max_meals != -1 && 
-				table->philosophers[i].meals_eaten >= table->max_meals)
-			{
-				i++;
-				if (i == table->num_philosophers)
-				{
-					table->simulation_running = 0;
-					return (NULL);
-				}
-				continue ;
-			}
-			i++;
-		}
+		monitor_each_philosopher(table);
 		usleep(1000);
 	}
 	return (NULL);
