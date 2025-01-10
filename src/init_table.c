@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:26:40 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 19:16:39 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:44:04 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	init_table_resources(t_table *table)
 
 int	init_table(t_table *table, int argc, char **argv)
 {
-	printf("Debug: Starting init_table\n");
 	if (parse_args(table, argc, argv))
 		return (1);
 	if (init_table_resources(table))
