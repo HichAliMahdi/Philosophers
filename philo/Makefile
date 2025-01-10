@@ -6,11 +6,11 @@
 #    By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 12:09:46 by hali-mah          #+#    #+#              #
-#    Updated: 2025/01/10 21:33:34 by hali-mah         ###   ########.fr        #
+#    Updated: 2025/01/10 22:03:00 by hali-mah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
+NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 SRCS = src/actions.c \
