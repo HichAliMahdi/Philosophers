@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:20:56 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 21:41:20 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:42:10 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,8 @@ void	print_action(t_philosopher *philosopher, const char *action)
 	pthread_mutex_unlock(&table->print_lock);
 }
 
-void	safe_state_change(t_philosopher *philo, t_philo_state new_state)
-{
-	pthread_mutex_lock(&philo->state_mutex);
-	philo->state = new_state;
-	pthread_mutex_unlock(&philo->state_mutex);
-}
-
 void	take_forks(t_philosopher *philosopher)
 {
-	if (philosopher->table->num_philosophers == 1)
-	{
-		pthread_mutex_lock(philosopher->left_fork);
-		print_action(philosopher, "has taken a fork");
-		while (philosopher->table->simulation_running)
-			usleep(1000);
-		pthread_mutex_unlock(philosopher->left_fork);
-		return ;
-	}
 	if (philosopher->id % 2)
 	{
 		pthread_mutex_lock(philosopher->right_fork);
