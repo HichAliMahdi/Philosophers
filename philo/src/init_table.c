@@ -6,7 +6,11 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:26:40 by hali-mah          #+#    #+#             */
+<<<<<<< HEAD:philo/src/init_table.c
 /*   Updated: 2025/01/10 21:30:23 by hali-mah         ###   ########.fr       */
+=======
+/*   Updated: 2025/01/10 19:16:39 by hali-mah         ###   ########.fr       */
+>>>>>>> parent of 35b91ce (removing debug printing):src/init_table.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +77,7 @@ int	init_table_resources(t_table *table)
 
 int	init_table(t_table *table, int argc, char **argv)
 {
+	printf("Debug: Starting init_table\n");
 	if (parse_args(table, argc, argv))
 		return (1);
 	if (init_table_resources(table))
