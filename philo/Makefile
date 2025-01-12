@@ -6,7 +6,7 @@
 #    By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 12:09:46 by hali-mah          #+#    #+#              #
-#    Updated: 2025/01/12 20:03:42 by hali-mah         ###   ########.fr        #
+#    Updated: 2025/01/12 23:03:14 by hali-mah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS = src/actions.c \
 	  src/init_table.c \
 	  src/main.c \
 	  src/routine.c \
+	  src/monitor.c \
+	  src/simulation.c \
 	  utilities/ft_atoi.c \
 	  utilities/utils.c
 OBJS = $(SRCS:.c=.o)

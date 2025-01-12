@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 18:57:10 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/12 23:05:24 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		init_philosophers(t_table *table);
 void	*monitor_philosophers(void *arg);
 void	destroy_mutexes(t_table *table);
 void	cleanup(t_table *table);
+int		check_simulation_status(t_table *table);
 void	*philosopher_routine(void *arg);
 void	start_simulation(t_table *table);
 void	print_action(t_philosopher *philosopher, const char *action);
