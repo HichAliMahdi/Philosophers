@@ -6,15 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:48:44 by hali-mah          #+#    #+#             */
-<<<<<<< HEAD:philo/src/init_philosophers.c
-<<<<<<< HEAD:philo/src/init_philosophers.c
-/*   Updated: 2025/01/10 21:22:07 by hali-mah         ###   ########.fr       */
-=======
-/*   Updated: 2025/01/10 19:28:13 by hali-mah         ###   ########.fr       */
->>>>>>> parent of 35b91ce (removing debug printing):src/init_philosophers.c
-=======
-/*   Updated: 2025/01/10 19:28:13 by hali-mah         ###   ########.fr       */
->>>>>>> parent of 35b91ce (removing debug printing):src/init_philosophers.c
+/*   Updated: 2025/01/12 19:57:31 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
