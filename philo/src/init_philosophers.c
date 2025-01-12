@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:48:44 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 19:44:21 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/12 20:11:30 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	check_philosopher_status(t_table *table, int i)
 	long	current;
 
 	current = current_time();
+	pthread_mutex_lock(&table->state_lock);
 	if (current - table->philosophers[i].last_meal_time > table->time_to_die)
 	{
 		pthread_mutex_lock(&table->print_lock);
@@ -47,7 +48,10 @@ static void	check_philosopher_status(t_table *table, int i)
 			table->philosophers[i].id);
 		table->simulation_running = 0;
 		pthread_mutex_unlock(&table->print_lock);
+		pthread_mutex_unlock(&table->state_lock);
+		return ;
 	}
+	pthread_mutex_unlock(&table->state_lock);
 }
 
 static void	monitor_each_philosopher(t_table *table)

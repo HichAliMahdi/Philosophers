@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:11:10 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/10 19:38:35 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/12 20:12:50 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ void	*philosopher_routine(void *arg)
 
 	philosopher = (t_philosopher *)arg;
 	table = philosopher->table;
+	if (table->num_philosophers == 1)
+	{
+		print_action(philosopher, "is thinking");
+		pthread_mutex_lock(philosopher->right_fork);
+		print_action(philosopher, "has taken a fork");
+		while (table->simulation_running)
+			usleep(100);
+		pthread_mutex_unlock(philosopher->right_fork);
+		return (NULL);
+	}
 	while (table->simulation_running)
 	{
 		print_action(philosopher, "is thinking");
