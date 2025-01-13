@@ -6,31 +6,26 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:58:17 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/08 23:11:09 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:43:15 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-long	current_time(void)
+size_t	current_time(void)
 {
-	struct timeval	tv;
+	t_timeval	time;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	if (gettimeofday(&time, NULL) == -1)
+		return (-1);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	precise_usleep(int ms)
+void	precise_usleep(size_t ms)
 {
-	long	start;
-	long	current_time_value;
+	size_t	start;
 
 	start = current_time();
-	while (1)
-	{
-		current_time_value = current_time();
-		if (current_time_value - start >= ms)
-			break ;
-		usleep(100);
-	}
+	while (current_time() - start < ms)
+		usleep(500);
 }

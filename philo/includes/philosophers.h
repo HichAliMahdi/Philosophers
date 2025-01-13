@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/12 23:05:24 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:49:00 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/time.h>
 # include <string.h>
 # include <limits.h>
+
+typedef struct timeval	t_timeval;
 
 typedef struct s_philosopher
 {
@@ -49,8 +51,8 @@ typedef struct s_table
 
 // Function prototypes
 int		ft_atoi(const char *str);
-long	current_time(void);
-void	precise_usleep(int ms);
+size_t	current_time(void);
+void	precise_usleep(size_t ms);
 int		parse_args(t_table *table, int argc, char **argv);
 int		init_table_resources(t_table *table);
 int		init_table(t_table *table, int argc, char **argv);
