@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 23:00:21 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/12 23:01:16 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:16:09 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static void	initialize_simulation(t_table *table)
 {
-	int	i;
+	int		i;
+	long	current;
 
-	table->start_time = current_time();
+	current = current_time();
 	i = 0;
 	while (i < table->num_philosophers)
 	{
-		table->philosophers[i].last_meal_time = table->start_time;
+		table->philosophers[i].times.last_meal = current;
+		table->philosophers[i].times.born_time = current;
 		i++;
 	}
 }

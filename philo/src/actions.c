@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:20:56 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/12 22:47:03 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:11:23 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 void	print_action(t_philosopher *philosopher, const char *action)
 {
 	t_table	*table;
+	long	timestamp;
 
 	table = philosopher->table;
 	pthread_mutex_lock(&table->print_lock);
 	pthread_mutex_lock(&table->state_lock);
 	if (table->simulation_running)
 	{
-		printf("%ld %d %s\n", current_time() - table->start_time,
-			philosopher->id, action);
+		timestamp = current_time() - philosopher->times.born_time;
+		printf("%ld %d %s\n", timestamp, philosopher->id, action);
 	}
 	pthread_mutex_unlock(&table->state_lock);
 	pthread_mutex_unlock(&table->print_lock);
@@ -55,7 +56,7 @@ void	eat(t_philosopher *philosopher)
 
 	table = philosopher->table;
 	pthread_mutex_lock(&table->state_lock);
-	philosopher->last_meal_time = current_time();
+	philosopher->times.last_meal = current_time();
 	philosopher->meals_eaten++;
 	pthread_mutex_unlock(&table->state_lock);
 	print_action(philosopher, "is eating");

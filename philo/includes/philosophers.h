@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 11:52:32 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/13 15:49:00 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:07:56 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,22 @@
 
 typedef struct timeval	t_timeval;
 
+typedef struct s_times
+{
+	int		die;
+	int		eat;
+	int		sleep;
+	long	last_meal;
+	long	born_time;
+}	t_times;
+
 typedef struct s_philosopher
 {
 	int				id;
-	long			last_meal_time;
+	t_times			times;
 	int				meals_eaten;
+	int				must_eat;
+	int				philo_count;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
@@ -45,6 +56,7 @@ typedef struct s_table
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_lock;
 	pthread_mutex_t	state_lock;
+	pthread_mutex_t	meal_lock;
 	t_philosopher	*philosophers;
 	long			start_time;
 }	t_table;

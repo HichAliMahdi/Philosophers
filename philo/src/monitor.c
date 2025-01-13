@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:58:04 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/12 23:05:06 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:16:09 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ static int	check_philosopher_death(t_table *table, int i)
 
 	pthread_mutex_lock(&table->state_lock);
 	time_since_last_meal = current_time()
-		- table->philosophers[i].last_meal_time;
-	if (time_since_last_meal > table->time_to_die && table->simulation_running)
+		- table->philosophers[i].times.last_meal;
+	if (time_since_last_meal > table->philosophers[i].times.die
+		&& table->simulation_running)
 	{
-		printf("%ld %d died\n", current_time() - table->start_time,
+		printf("%ld %d died\n",
+			current_time() - table->philosophers[i].times.born_time,
 			table->philosophers[i].id);
 		table->simulation_running = 0;
 		pthread_mutex_unlock(&table->state_lock);
