@@ -6,13 +6,13 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:11:10 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/12 23:02:52 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:00:45 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static int	handle_single_philosopher(t_philosopher *philosopher)
+int	handle_single_philosopher(t_philosopher *philosopher)
 {
 	t_table	*table;
 
@@ -22,7 +22,7 @@ static int	handle_single_philosopher(t_philosopher *philosopher)
 	return (1);
 }
 
-static void	philosopher_actions(t_philosopher *philosopher)
+void	philosopher_actions(t_philosopher *philosopher)
 {
 	print_action(philosopher, "is thinking");
 	take_forks(philosopher);

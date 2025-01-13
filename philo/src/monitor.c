@@ -6,13 +6,13 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:58:04 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/13 16:16:09 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:20:21 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static int	check_all_philosophers_ate(t_table *table)
+int	check_all_philosophers_ate(t_table *table)
 {
 	int	i;
 	int	all_ate;
@@ -34,18 +34,19 @@ static int	check_all_philosophers_ate(t_table *table)
 	return (all_ate);
 }
 
-static int	check_philosopher_death(t_table *table, int i)
+int	check_philosopher_death(t_table *table, int i)
 {
 	long	time_since_last_meal;
+	long	current;
 
 	pthread_mutex_lock(&table->state_lock);
-	time_since_last_meal = current_time()
-		- table->philosophers[i].times.last_meal;
+	current = current_time();
+	time_since_last_meal = current - table->philosophers[i].times.last_meal;
 	if (time_since_last_meal > table->philosophers[i].times.die
 		&& table->simulation_running)
 	{
 		printf("%ld %d died\n",
-			current_time() - table->philosophers[i].times.born_time,
+			current - table->philosophers[i].times.born_time,
 			table->philosophers[i].id);
 		table->simulation_running = 0;
 		pthread_mutex_unlock(&table->state_lock);
@@ -82,7 +83,7 @@ void	*monitor_philosophers(void *arg)
 				return (NULL);
 			i++;
 		}
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }

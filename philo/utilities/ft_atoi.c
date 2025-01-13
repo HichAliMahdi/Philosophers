@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:32:09 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/13 15:51:28 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:20:33 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *str)
 	{
 		res = res * 10 + (str[i] - '0');
 		if (sign == 1 && res > INT_MAX)
-			break ;
+			return (0);
 		i++;
 	}
 	return ((int)(res * sign));

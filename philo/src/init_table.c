@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:26:40 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/12 20:07:22 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:58:25 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	parse_args(t_table *table, int argc, char **argv)
 	return (0);
 }
 
-static int	initialize_forks(t_table *table)
+int	initialize_forks(t_table *table)
 {
 	int	i;
 
@@ -56,13 +56,19 @@ static int	initialize_forks(t_table *table)
 	return (0);
 }
 
-static int	initialize_locks(t_table *table)
+int	initialize_locks(t_table *table)
 {
 	if (pthread_mutex_init(&table->state_lock, NULL) != 0)
 		return (1);
 	if (pthread_mutex_init(&table->print_lock, NULL) != 0)
 	{
 		pthread_mutex_destroy(&table->state_lock);
+		return (1);
+	}
+	if (pthread_mutex_init(&table->meal_lock, NULL) != 0)
+	{
+		pthread_mutex_destroy(&table->state_lock);
+		pthread_mutex_destroy(&table->print_lock);
 		return (1);
 	}
 	return (0);

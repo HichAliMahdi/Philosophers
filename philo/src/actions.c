@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 22:20:56 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/13 16:11:23 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:17:45 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	take_forks(t_philosopher *philosopher)
 		second_fork = philosopher->right_fork;
 	}
 	pthread_mutex_lock(first_fork);
-	print_action(philosopher, "has taken a fork");
 	pthread_mutex_lock(second_fork);
+	print_action(philosopher, "has taken a fork");
 	print_action(philosopher, "has taken a fork");
 }
 
@@ -55,11 +55,11 @@ void	eat(t_philosopher *philosopher)
 	t_table	*table;
 
 	table = philosopher->table;
+	print_action(philosopher, "is eating");
 	pthread_mutex_lock(&table->state_lock);
 	philosopher->times.last_meal = current_time();
 	philosopher->meals_eaten++;
 	pthread_mutex_unlock(&table->state_lock);
-	print_action(philosopher, "is eating");
 	precise_usleep(table->time_to_eat);
 }
 

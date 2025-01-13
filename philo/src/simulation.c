@@ -6,13 +6,13 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 23:00:21 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/01/13 16:16:09 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:18:58 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static void	initialize_simulation(t_table *table)
+void	initialize_simulation(t_table *table)
 {
 	int		i;
 	long	current;
@@ -25,9 +25,10 @@ static void	initialize_simulation(t_table *table)
 		table->philosophers[i].times.born_time = current;
 		i++;
 	}
+	table->start_time = current;
 }
 
-static int	handle_thread_creation_failure(t_table *table, int i)
+int	handle_thread_creation_failure(t_table *table, int i)
 {
 	pthread_mutex_lock(&table->state_lock);
 	table->simulation_running = 0;
@@ -37,7 +38,7 @@ static int	handle_thread_creation_failure(t_table *table, int i)
 	return (1);
 }
 
-static int	create_threads(t_table *table, pthread_t *monitor)
+int	create_threads(t_table *table, pthread_t *monitor)
 {
 	int	i;
 
@@ -47,7 +48,7 @@ static int	create_threads(t_table *table, pthread_t *monitor)
 		if (pthread_create(&table->philosophers[i].thread, NULL,
 				philosopher_routine, &table->philosophers[i]) != 0)
 			return (handle_thread_creation_failure(table, i));
-		usleep(100);
+		usleep(1000);
 		i++;
 	}
 	if (pthread_create(monitor, NULL, monitor_philosophers, table) != 0)
