@@ -6,7 +6,7 @@
 /*   By: hali-mah <hali-mah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 21:26:40 by hali-mah          #+#    #+#             */
-/*   Updated: 2025/04/03 15:09:32 by hali-mah         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:17:09 by hali-mah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	parse_args(t_table *table, int argc, char **argv)
 	if (table->num_philosophers <= 0 || table->num_philosophers > 200
 		|| table->time_to_die <= 0 || table->time_to_eat <= 0
 		|| table->time_to_sleep <= 0)
-	{
-		printf("Debug: Invalid argument values\n");
 		return (1);
-	}
 	if (argc == 6)
 	{
 		table->max_meals = ft_atoi(argv[5]);
